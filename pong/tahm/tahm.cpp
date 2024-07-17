@@ -6,6 +6,7 @@ extern Tahm tahm;
 
 void Tahm::init(void)
 {
+	running = true;
 	window = new Window;
 	renderer = new Renderer;
 	input = new Input;
@@ -18,14 +19,17 @@ void Tahm::init(void)
 
 void Tahm::loop()
 {
-	renderer->prepare();
+	//input->read();
 
-	input->read();
+
 
 	//if (update) update();
 	// 
 	
-	input->clear();
+	//input->clear();
+
+
+	renderer->prepare();
 
 	//if (draw) draw();
 
@@ -40,11 +44,11 @@ Tahm::~Tahm()
 }
 
 
-void cleanup(void)
+void Tahm::destroy(void)
 {
-	SDL_DestroyRenderer(tahm.renderer->SDLrenderer);
+	SDL_DestroyRenderer(renderer->SDLrenderer);
 
-	SDL_DestroyWindow(tahm.window->SDLwindow);
+	SDL_DestroyWindow(window->SDLwindow);
 
 	SDL_Quit();
 }
